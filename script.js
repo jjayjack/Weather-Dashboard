@@ -1,0 +1,1 @@
+var openURL = 'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=a4b00bad833f4e991e075f77de4479fd'
