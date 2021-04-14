@@ -8,6 +8,7 @@
 
 #forecast {
     background-color: var(--primary);
+    justify-content: space-evenly;
 }
 
 .forecastDiv{
@@ -16,7 +17,7 @@
     flex-direction: row;
     width: auto;
     padding: 2px;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 

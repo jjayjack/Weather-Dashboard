@@ -12,7 +12,6 @@ function getCity(){
     var cityName = document.getElementById('cityName').value;
     var currentUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${key}`;
   
-    var units = '&units=imperial';
     fetch(currentUrl)
         .then(function(rawData) {
             return rawData.json();
@@ -34,11 +33,23 @@ function getCity(){
                             var humid = document.createElement('h4');
                             var wind = document.createElement('h4');
                             var uv = document.createElement('h4');
+                            uv.id = 'uvColor';
                                 cityName1.textContent = data.city.name;
                                 temp.textContent = allweatherData.daily[0].temp.day;
                                 humid.textContent = allweatherData.daily[0].humidity;
                                 wind.textContent = allweatherData.daily[0].wind_speed;
                                 uv.textContent = allweatherData.daily[0].uvi;
+                            if (allweatherData.daily[0].uvi <= 2){
+                                uv.style.backgroundColor = 'green';
+                            }else if (allweatherData.daily[0].uvi >= 2 && allweatherData.daily[0].uvi <= 5){
+                                uv.style.backgroundColor = 'yellow';
+                            }else if (allweatherData.daily[0].uvi >= 5 && allweatherData.daily[0].uvi <= 7){
+                                uv.style.backgroundColor = 'orange';
+                            }else if (allweatherData.daily[0].uvi >= 7 && allweatherData.daily[0].uvi <= 10){
+                                uv.style.backgroundColor = 'red';
+                            }else{
+                                uv.style.backgroundColor = 'purple';
+                            }
 
                                 //append child
                                 cityName1HTML.appendChild(cityName1);
@@ -73,13 +84,38 @@ function getCity(){
                                     dayCard.appendChild(graphicIcon);
                                     dayCard.appendChild(tempForecast);
                                     dayCard.appendChild(humidForecast);
-
                                 }
                         }
                     )
             }
         )
+    save();
 };
+
+function save(){
+    input = document.getElementById('cityName').value;
+    previousCity.push(input);
+    localStorage.setItem('cityValue', JSON.stringify(previousCity));
+}
 
 cityButton.addEventListener('click', getCity);
 
+previousCity = JSON.parse(localStorage.getItem('cityValue'));
+
+if(previousCity !== null){
+    var cityList = document.createElement('ul');
+    var previousCities = document.getElementById('searchField');
+    previousCities.appendChild(cityList);
+
+
+    var i;
+    for (i = 0; i < previousCity.length; i++){
+    // loop in order to add each value within previous city array to list
+    var storedCity = document.createElement('li');
+    cityList.appendChild(storedCity);
+    storedCity.innerHTML = previousCity[i];
+
+    }
+}else{
+    previousCity = [];
+};
