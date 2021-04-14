@@ -2,10 +2,13 @@ var key = 'a4b00bad833f4e991e075f77de4479fd';
 var previousCity = [];
 var cityButton = document.getElementById('search');
 var cityName1HTML = document.getElementById('cityName1');
+var currentDateHTML = document.getElementById('currentDate');
+var weatherHTML = document.getElementById('weatherIcon');
 var tempHTML = document.getElementById('temp');
 var humidHTML = document.getElementById('humid');
 var windHTML = document.getElementById('wind');
 var uvHTML = document.getElementById('uv');
+
 
 
 function getCity(){
@@ -29,12 +32,17 @@ function getCity(){
                     .then(function(allweatherData)
                         {
                             var cityName1 = document.createElement('h3');
+                            var date = document.createElement('h4');
+                            var weatherImg = document.createElement('img');
+                            var iconW = `http://openweathermap.org/img/wn/${allweatherData.daily[0].weather[0].icon}@2x.png`;
                             var temp = document.createElement('h4');
                             var humid = document.createElement('h4');
                             var wind = document.createElement('h4');
                             var uv = document.createElement('h4');
                             uv.id = 'uvColor';
                                 cityName1.textContent = data.city.name;
+                                date.textContent = moment.unix(allweatherData.daily[0].dt).format("MM/DD/YYYY");
+                                weatherImg.src = iconW;
                                 temp.textContent = allweatherData.daily[0].temp.day;
                                 humid.textContent = allweatherData.daily[0].humidity;
                                 wind.textContent = allweatherData.daily[0].wind_speed;
@@ -49,10 +57,11 @@ function getCity(){
                                 uv.style.backgroundColor = 'red';
                             }else{
                                 uv.style.backgroundColor = 'purple';
-                            }
-
+                            }                        
                                 //append child
                                 cityName1HTML.appendChild(cityName1);
+                                currentDateHTML.appendChild(date);
+                                weatherHTML.appendChild(weatherImg);
                                 tempHTML.appendChild(temp);
                                 humidHTML.appendChild(humid);
                                 windHTML.appendChild(wind);
@@ -96,7 +105,13 @@ function save(){
     input = document.getElementById('cityName').value;
     previousCity.push(input);
     localStorage.setItem('cityValue', JSON.stringify(previousCity));
-}
+    //make previous city link
+    // var lastCity = document.querySelector(input);
+    // lastCity.addEventListener('click', function(){
+    //     getCity;
+    // })
+    // cityName.setAttribute('a','a');
+};
 
 cityButton.addEventListener('click', getCity);
 
