@@ -47,10 +47,34 @@ function getCity(){
                                 windHTML.appendChild(wind);
                                 uvHTML.appendChild(uv);
 
-
-
-
                                 //for loop for remainder of days 
+                                var i;
+                                for (i = 0; i < 5; i++) {
+                                    var dateForecast = document.createElement('h4')
+                                    var graphicIcon = document.createElement('img')
+                                    var tempForecast = document.createElement('p');
+                                    var humidForecast = document.createElement('p');
+                                    var weatherIcon = `http://openweathermap.org/img/wn/${allweatherData.daily[i].weather[0].icon}@2x.png`;
+                                    var dateStamp = moment.unix(allweatherData.daily[i].dt).format("MM/DD/YYYY");
+                                
+
+                                    dateForecast.textContent = dateStamp;
+                                    graphicIcon.src = weatherIcon;
+                                    tempForecast.textContent = "Temperature: " + allweatherData.daily[i].temp.day;
+                                    humidForecast.textContent = "Humidity: " + allweatherData.daily[i].humidity;
+
+                                    var boxCard = document.createElement('div');
+                                    var dayCard = document.createElement('card');
+                                    boxCard.className = "forecastDiv"
+                                    dayCard.className = "forecastCard";
+                                    document.getElementById("forecast").appendChild(boxCard);
+                                    boxCard.appendChild(dayCard);
+                                    dayCard.appendChild(dateForecast);
+                                    dayCard.appendChild(graphicIcon);
+                                    dayCard.appendChild(tempForecast);
+                                    dayCard.appendChild(humidForecast);
+
+                                }
                         }
                     )
             }

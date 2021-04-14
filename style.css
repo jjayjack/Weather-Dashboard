@@ -1,0 +1,31 @@
+:root{
+    --primary: rgb(89, 158, 83);
+    --secondary: rgb(202, 226, 137);
+    --tertiary: rgb(77, 77, 77);
+    --quaternary: rgb(236, 236, 228);
+
+}
+
+#forecast {
+    background-color: var(--primary);
+}
+
+.forecastDiv{
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding: 2px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.forecastCard{
+    border: 2px solid var(--tertiary);
+    border-radius: 5px;
+    background-color: var(--quaternary);
+    flex-wrap: wrap;
+    padding: 10px;
+
+
+}
