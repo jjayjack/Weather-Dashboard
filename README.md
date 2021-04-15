@@ -1,4 +1,9 @@
 # Weather-Dashboard
+
+\\      Deployed application link     //
+https://jjayjack.github.io/Weather-Dashboard/
+
+
 \\      Updated code to include search options      //
 ![image](https://user-images.githubusercontent.com/79474830/114802176-dd4b7d80-9d62-11eb-82e7-04972c595852.png)
 
