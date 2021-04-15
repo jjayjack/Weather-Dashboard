@@ -1,16 +1,57 @@
 :root{
-    --primary: rgb(89, 158, 83);
+    --quaternary: rgb(89, 158, 83);
     --secondary: rgb(202, 226, 137);
     --tertiary: rgb(77, 77, 77);
-    --quaternary: rgb(236, 236, 228);
+    --primary: rgb(200, 216, 192);
+    font-family: 'Verdana', 'Geneva', 'Tahoma', 'sans-serif';
 
 }
+body{
+    background-color: var(--tertiary);
+}
 
-#forecast {
+.heading{
+    color: var(--primary);
+}
+/* Search field */
+.searchField{
+    color: var(--secondary);
+}
+#search{
+    background-color: var(--tertiary);
+    color: var(--quaternary);
+}
+/* end Search field */
+
+/* Results field */
+.cityInfo{
+    background-color: var(--quaternary);
+    border: 5px dashed var(--secondary);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px;
+    justify-content: space-around;
+}
+#currentDate, #weatherIcon, #temp, #humid, #wind, #uv{
+    width:fit-content;
+}
+/* 5 day forecast */
+#resultForecast {
     background-color: var(--primary);
     justify-content: space-evenly;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
+#forecast{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .forecastDiv{
     background-color: var(--secondary);
     display: flex;

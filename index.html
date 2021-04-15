@@ -11,33 +11,40 @@
 </head>
 <body>
 <!-- Jumbotron -->
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid heading">
   <div class="container">
     <h1 class="display-4">Weather Dashboard</h1>
   </div>
 </div>
 <!-- Search field -->
 <div class="container">
-    <div id="searchField" class="searchField">
-        <h2>Search for a City:</h2>
-        <div class="input-group mb-3">
-            <input type="text" id="cityName" class="form-control" placeholder="City">
-            <button class="btn btn-outline-secondary" type="button" id="search">search</button>
+    <div class="row">
+        <div class="col-3">
+            <div id="searchField" class="searchField">
+                <h2>Search for a City:</h2>
+                <div class="input-group mb-3">
+                    <input type="text" id="cityName" class="form-control" placeholder="City">
+                    <button class="btn btn-outline-secondary" type="button" id="search">search</button>
+                </div>
+            </div>
         </div>
-    </div>
 <!-- Results field -->
-    <div class="results">
-        <div class="row cityInfo">
-            <h3 id="cityName1">City:</h3>
-                <h4 id="currentDate"></h4>
-                <h4 id="weatherIcon"></h4>
-                <h4 id="temp">Temperature:</h4>
-                <h4 id="humid">Humidity:</h4>
-                <h4 id="wind">Wind Speed:</h4>
-                <h4 id="uv">UV Index:</h4>
-        </div>
-        <div class="row forecast" id = "forecast">
-            <h3>5-Day Forecast:</h3>
+        <div class="col-9">
+            <div class="results">
+                <div class="row cityInfo">
+                    <h3 id="cityName1"></h3>
+                        <h4 id="currentDate"></h4>
+                        <h4 id="weatherIcon"></h4>
+                        <h4 id="temp">Temperature:</h4>
+                        <h4 id="humid">Humidity:</h4>
+                        <h4 id="wind">Wind Speed:</h4>
+                        <h4 id="uv">UV Index:</h4>
+                </div>
+                <div class="row forecast" id = "resultForecast">
+                    <h3>5-Day Forecast:</h3>
+                    <div id="forecast"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

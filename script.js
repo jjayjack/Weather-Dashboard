@@ -43,10 +43,10 @@ function getCity(){
                                 cityName1.textContent = data.city.name;
                                 date.textContent = moment.unix(allweatherData.daily[0].dt).format("MM/DD/YYYY");
                                 weatherImg.src = iconW;
-                                temp.textContent = allweatherData.daily[0].temp.day;
-                                humid.textContent = allweatherData.daily[0].humidity;
-                                wind.textContent = allweatherData.daily[0].wind_speed;
-                                uv.textContent = allweatherData.daily[0].uvi;
+                                temp.textContent = 'Temperature: ' + allweatherData.daily[0].temp.day;
+                                humid.textContent = 'Humidity: ' + allweatherData.daily[0].humidity;
+                                wind.textContent = 'Wind: ' + allweatherData.daily[0].wind_speed;
+                                uv.textContent = 'UV Index: ' + allweatherData.daily[0].uvi;
                             if (allweatherData.daily[0].uvi <= 2){
                                 uv.style.backgroundColor = 'green';
                             }else if (allweatherData.daily[0].uvi >= 2 && allweatherData.daily[0].uvi <= 5){
@@ -57,7 +57,29 @@ function getCity(){
                                 uv.style.backgroundColor = 'red';
                             }else{
                                 uv.style.backgroundColor = 'purple';
-                            }                        
+                            }   //clear child
+                                while (cityName1HTML.firstChild){
+                                    cityName1HTML.removeChild(cityName1HTML.firstChild)};
+                                while (currentDateHTML.firstChild){
+                                    currentDateHTML.removeChild(currentDateHTML.firstChild)
+                                };
+                                while (weatherHTML.firstChild){
+                                    weatherHTML.removeChild(weatherHTML.firstChild)
+                                };
+                                while (tempHTML.firstChild){
+                                    tempHTML.removeChild(tempHTML.firstChild)
+                                };
+                                while (humidHTML.firstChild){
+                                    humidHTML.removeChild(humidHTML.firstChild)
+                                };
+                                while (windHTML.firstChild){
+                                    windHTML.removeChild(windHTML.firstChild)
+                                };
+                                while (uvHTML.firstChild){
+                                    uvHTML.removeChild(uvHTML.firstChild);
+                                }
+
+
                                 //append child
                                 cityName1HTML.appendChild(cityName1);
                                 currentDateHTML.appendChild(date);
@@ -69,6 +91,10 @@ function getCity(){
 
                                 //for loop for remainder of days 
                                 var i;
+                                var forecastDiv = document.getElementById('forecast');
+                                while (forecastDiv.firstChild){
+                                        forecastDiv.removeChild(forecastDiv.firstChild)
+                                    };
                                 for (i = 0; i < 5; i++) {
                                     var dateForecast = document.createElement('h4')
                                     var graphicIcon = document.createElement('img')
@@ -85,9 +111,11 @@ function getCity(){
 
                                     var boxCard = document.createElement('div');
                                     var dayCard = document.createElement('card');
+                                    
                                     boxCard.className = "forecastDiv"
                                     dayCard.className = "forecastCard";
-                                    document.getElementById("forecast").appendChild(boxCard);
+                                    
+                                    forecastDiv.appendChild(boxCard);
                                     boxCard.appendChild(dayCard);
                                     dayCard.appendChild(dateForecast);
                                     dayCard.appendChild(graphicIcon);
@@ -105,12 +133,6 @@ function save(){
     input = document.getElementById('cityName').value;
     previousCity.push(input);
     localStorage.setItem('cityValue', JSON.stringify(previousCity));
-    //make previous city link
-    // var lastCity = document.querySelector(input);
-    // lastCity.addEventListener('click', function(){
-    //     getCity;
-    // })
-    // cityName.setAttribute('a','a');
 };
 
 cityButton.addEventListener('click', getCity);
@@ -126,11 +148,27 @@ if(previousCity !== null){
     var i;
     for (i = 0; i < previousCity.length; i++){
     // loop in order to add each value within previous city array to list
-    var storedCity = document.createElement('li');
-    cityList.appendChild(storedCity);
+    var storedCity = document.createElement('a');
+    var listStored = document.createElement('li');
+    listStored.appendChild(storedCity);
+    cityList.appendChild(listStored);
     storedCity.innerHTML = previousCity[i];
+
+    storedCity.addEventListener('click', function(e){
+        input = document.getElementById('cityName');
+        e = e || window.event;
+        var target = e.target;
+            input.value = target.textContent || target.innerText;
+    });
 
     }
 }else{
     previousCity = [];
 };
+
+function savedCity(){
+    //pull item from local storage
+    localStorage.getItem('cityValue');
+
+
+}
